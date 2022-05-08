@@ -1,0 +1,13 @@
+{
+  "name": "cli-image-convert",
+  "version": "0.0.1",
+  "main": "bin/index.js",
+  "license": "MIT",
+  "bin": {
+    "cli-image-convert": "./bin/index.js"
+},
+  "dependencies": {
+    "commander": "^9.2.0",
+    "sharp": "^0.30.4"
+  }
+}
