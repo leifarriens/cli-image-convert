@@ -4,10 +4,11 @@
   "main": "bin/index.js",
   "license": "MIT",
   "bin": {
-    "cli-image-convert": "./bin/index.js"
-},
+    "image": "./bin/index.js"
+  },
   "dependencies": {
     "commander": "^9.2.0",
+    "fs-extra": "^10.1.0",
     "sharp": "^0.30.4"
   }
 }
