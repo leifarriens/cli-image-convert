@@ -2,15 +2,19 @@
   "name": "cli-image-convert",
   "version": "0.0.1",
   "main": "build/index.js",
+  "files": ["build"],
   "license": "MIT",
   "scripts": {
+    "start": "npm run dev",
     "dev": "tsc -w",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cli": "jest -- convert.spec.ts",
     "lint": "eslint . --ext .ts",
     "lint:fix": "npm run lint --fix",
-    "build": "tsc"
+    "package": "npm pack --dry-run",
+    "clean": "rimraf build",
+    "build": "npm run clean && tsc"
   },
   "bin": {
     "cic": "./build/bin/convert.js"
@@ -29,6 +33,7 @@
     "@typescript-eslint/parser": "^5.26.0",
     "eslint": "^8.16.0",
     "jest": "^28.1.0",
+    "rimraf": "^3.0.2",
     "ts-jest": "^28.0.2",
     "typescript": "^4.6.4"
   }
