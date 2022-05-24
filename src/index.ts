@@ -13,6 +13,7 @@ interface ConvertImageParams {
   rezise?: ResizeOptions;
 }
 
+type ConvertDirParams = ConvertImageParams;
 type WatchDirParams = ConvertImageParams;
 
 async function convertImage({
@@ -42,7 +43,7 @@ async function convertDir({
   outDir,
   format = 'jpg',
   rezise = {},
-}: ConvertImageParams) {
+}: ConvertDirParams) {
   const files = fs
     .readdirSync(inputPath)
     .map((filename) => path.resolve(inputPath, filename));

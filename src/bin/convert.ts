@@ -6,10 +6,8 @@ import { program } from 'commander';
 import type { Format } from '../types';
 
 import { convertImage, convertDir, watchDir } from '../index';
-import { version } from '../package.json';
 
 program
-  .version(version)
   .command('convert <input> [output]')
   .option('-w, --width <width>')
   .option('-h, --height <height>')
