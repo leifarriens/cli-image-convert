@@ -8,6 +8,7 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "tsc -w",
+    "pretest": "npm run build",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cli": "jest -- convert.spec.ts",
@@ -15,7 +16,8 @@
     "lint:fix": "npm run lint --fix",
     "package": "npm pack --dry-run",
     "clean": "rimraf build",
-    "build": "npm run clean && tsc"
+    "build": "npm run clean && tsc",
+    "prepublish": "npm run build"
   },
   "bin": {
     "cic": "./build/bin/convert.js"
