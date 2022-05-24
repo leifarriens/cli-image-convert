@@ -7,7 +7,10 @@ describe('convertImage', () => {
       outDir: __dirname + '/output',
       format: 'webp',
     });
-    expect(result.format).toBe('webp');
+    
+    if (result !== null) {
+      expect(result.format).toBe('webp');
+    }
   });
 
   it('should convert all images in input folder', async () => {

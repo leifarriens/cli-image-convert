@@ -1,8 +1,13 @@
-import sharp, { ResizeOptions, OutputInfo, FormatEnum } from 'sharp';
-import fs from 'fs';
-import path from 'path';
-import chokidar from 'chokidar';
-import chalk from 'chalk';
+import sharp, {
+  ResizeOptions,
+  OutputInfo,
+  FormatEnum,
+  format as formats,
+} from "sharp";
+import fs from "fs";
+import path from "path";
+import chokidar from "chokidar";
+import chalk from "chalk";
 
 interface ConvertImageParams {
   inputPath: string;
@@ -17,13 +22,18 @@ type WatchDirParams = ConvertImageParams;
 async function convertImage({
   inputPath,
   outDir,
-  format = 'jpg',
+  format = "jpg",
   rezise = {},
-}: ConvertImageParams): Promise<OutputInfo> {
+}: ConvertImageParams): Promise<OutputInfo | null> {
+  const { name, dir: inputDir, ext } = path.parse(inputPath);
+
+  if (!ext || Object.keys(formats).includes(ext)) {
+    return null;
+  }
+
   const file = fs.readFileSync(inputPath);
 
-  const { name, dir: inputDir } = path.parse(inputPath);
-  const fileName = name + '.' + format;
+  const fileName = name + "." + format;
   const outputDir = path.resolve(inputDir, outDir);
   const outputPath = path.resolve(inputDir, outDir, fileName);
 
@@ -39,7 +49,7 @@ async function convertImage({
 async function convertDir({
   inputPath,
   outDir,
-  format = 'jpg',
+  format = "jpg",
   rezise = {},
 }: ConvertDirParams) {
   const files = fs
@@ -55,7 +65,7 @@ async function convertDir({
 }
 
 async function watchDir({ inputPath, outDir, format, rezise }: WatchDirParams) {
-  chokidar.watch(inputPath).on('add', async function (filePath) {
+  chokidar.watch(inputPath).on("add", async function (filePath) {
     await convertImage({ inputPath: filePath, outDir, format, rezise });
   });
 }
