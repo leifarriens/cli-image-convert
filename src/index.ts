@@ -1,15 +1,13 @@
-import sharp, { ResizeOptions, OutputInfo } from 'sharp';
+import sharp, { ResizeOptions, OutputInfo, FormatEnum } from 'sharp';
 import fs from 'fs';
 import path from 'path';
 import chokidar from 'chokidar';
 import chalk from 'chalk';
 
-import type { Format } from './types';
-
 interface ConvertImageParams {
   inputPath: string;
   outDir: string;
-  format?: Format;
+  format?: keyof FormatEnum;
   rezise?: ResizeOptions;
 }
 

@@ -3,7 +3,7 @@
 import fs from 'fs';
 import { program } from 'commander';
 
-import type { Format } from '../types';
+import type { FormatEnum } from 'sharp';
 
 import { convertImage, convertDir, watchDir } from '../index';
 
@@ -19,7 +19,7 @@ program
 program.parse();
 
 interface ConvertOptions {
-  format?: Format;
+  format?: keyof FormatEnum;
   watch?: boolean;
   width?: string;
   height?: string;
